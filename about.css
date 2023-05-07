@@ -1,0 +1,83 @@
+
+.body{
+    background-image: url("Background.jpg");
+    background-size: cover;
+}
+
+.navbarNavAltMarkup{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    
+}
+.navbar{
+    background-color: orangered;
+    align-items: center;
+    height: 30px;
+}
+.navbar-nav{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+.nav-item{
+    margin-top: 6px;
+}
+
+.infoBox{
+    display: flex;
+    justify-content: center;
+    height: 20vh;
+    
+}
+
+.contactBox{
+    display: flex;
+    justify-content: space-evenly;
+    
+}
+
+.infoBox{
+    display: flex;
+    align-items: center;
+    
+}
+
+
+
+.logoContainer{
+    display: flex;
+    justify-content: center;
+    
+}
+
+.logo{
+    
+    width: 100%;
+    height: 100%;
+    max-height: 250px;
+    max-width: 250px;
+}
+
+
+.phoneBox{
+display: flex;
+justify-content: center;
+
+
+
+}
+
+.addressBox{
+display: flex;
+justify-content: center;
+justify-content: space-evenly;
+
+}
+.text{
+    font-style: italic;
+    font-size: 3vh;
+}
+.map{
+    margin-left: 28vh;
+}
