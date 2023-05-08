@@ -1,18 +1,20 @@
 
 
-const pizza1 = {name: "Margarita", picture : "products/Margarita.jpg", ingredients: "Tomatsås, Ost", price: "85 SEK", amount: 0};
-const pizza2 = {name: "Vesuvio", picture : "products/Vesuvio.jpg", ingredients: "Tomatsås, Ost, Skina", price: "90 SEK", amount: 0};
-const pizza3 = {name : "Tomaso", picture : "products/tomaso.jpg", ingredients : "Skinka, Räkor", price : "100 SEK", amount: 0}
-const pizza4 = {name : "Hawaii", picture : "products/hawaii.jpg", ingredients : "Skinka, Ananas", price : "100 SEK", amount: 0}
-const pizza5 = {name : "Capricciosa", picture : "products/capricciosa.jpg", ingredients : "Skinka, Färska Champinjoner", price : "100 SEK", amount: 0}
-const pizza6 = {name : "Calzone (inbakad)", picture : "products/calzone.jpg", ingredients : "Tomatsås, Ost, Skinka", price : "110 SEK", amount: 0}
-const pizza7 = {name : "Kebabpizza", picture : "products/kebabpizza.jpg", ingredients : "Kebabkött, Lök, Färska Champinjoner, Peperoni, sås", price : "120 SEK", amount: 0}
-const pizza8 = {name : "Indiana", picture : "products/indiana.jpg", ingredients : "kyckling, Färska Champinjoner, Curry", price : "110 SEK", amount: 0}
+const pizza1 = {name: "Margarita", picture : "products/Margarita.jpg", ingredients: "Tomatsås, Ost", price: 85, amount: 0};
+const pizza2 = {name: "Vesuvio", picture : "products/Vesuvio.jpg", ingredients: "Tomatsås, Ost, Skina", price: 90, amount: 0};
+const pizza3 = {name : "Tomaso", picture : "products/tomaso.jpg", ingredients : "Skinka, Räkor", price : 100 , amount: 0}
+const pizza4 = {name : "Hawaii", picture : "products/hawaii.jpg", ingredients : "Skinka, Ananas", price : 100 , amount: 0}
+const pizza5 = {name : "Capricciosa", picture : "products/capricciosa.jpg", ingredients : "Skinka, Färska Champinjoner", price : 100 , amount: 0}
+const pizza6 = {name : "Calzone (inbakad)", picture : "products/calzone.jpg", ingredients : "Tomatsås, Ost, Skinka", price : 110, amount: 0}
+const pizza7 = {name : "Kebabpizza", picture : "products/kebabpizza.jpg", ingredients : "Kebabkött, Lök, Färska Champinjoner, Peperoni, sås", price : 120, amount: 0}
+const pizza8 = {name : "Indiana", picture : "products/indiana.jpg", ingredients : "kyckling, Färska Champinjoner, Curry", price : 110, amount: 0}
 
 const prods = [pizza1,pizza2, pizza3, pizza4, pizza5, pizza6, pizza7, pizza8]
 
 const produkter = document.getElementById("produkter");
 const shoppingCart = document.getElementById("produkter");
+
+let summary = 0;
 
 
 
@@ -44,7 +46,7 @@ function showProducts(){
         name.innerText = prod.name;
         
         description.innerText = prod.ingredients;
-        price.innerText = prod.price;
+        price.innerText = prod.price + " SEK";
         buyButton.innerText = "Lägg i kundvagn"
 
         picContainer.appendChild(pic)
@@ -60,9 +62,13 @@ function showProducts(){
 
         buyButton.onclick = () => {
        
-        const tempProd = document.getElementById(prod.name)
-        tempProd.innerText ++;    
-         
+        const tempProd = document.getElementById(prod.name);
+        prod.amount ++;
+        tempProd.innerText = prod.amount;
+        
+        const nyttPris = document.getElementById("slutPris");
+        summary += prod.price;
+        nyttPris.innerText = "Summa: " + summary;         
            
         }
 
@@ -97,6 +103,7 @@ function showCart(){
         itemName.innerText = prod.name;
         itemAmount.innerText = prod.amount;
         itemAmount.id = prod.name;
+
         removeButton.innerText = "Ta bort";
 
         itemContainer.appendChild(itemName);
@@ -109,23 +116,30 @@ function showCart(){
         removeButton.onclick = () => {
        
         const tempProd = document.getElementById(prod.name);
-        tempProd.innerText = 0;   
+        summary -= prod.price * prod.amount;
+        const nyttPris = document.getElementById("slutPris");
+        nyttPris.innerText = "Summa: " + summary;
+        prod.amount = 0;  
+        tempProd.amount = prod.amount;
+        tempProd.innerText = tempProd.amount;   
+        
+           
         }
 
     }
 
 
 
-    let summary = 0;
+    
     const totalPriceContainer = document.createElement("div");
     const totalPrice = document.createElement("p");
-
-    totalPrice.innerText = "Summa: " + summary;
+    totalPrice.id = "slutPris";
+    
     totalPriceContainer.appendChild(totalPrice);
     
     
     cartContainer.appendChild(totalPriceContainer);
-
+    totalPrice.innerText = "Summa: ";
     cartContainer.classList.add("cart");
     totalPrice.classList.add("totaltPris")
 
